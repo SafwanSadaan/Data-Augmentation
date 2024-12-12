@@ -1,3 +1,4 @@
+import sys
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -280,13 +281,26 @@ root.title("برنامج تعزيز البيانات")
 root.geometry("1100x650")  # تحديد حجم الواجهة
 root.resizable(width=False, height=False)  # تعيين قابلية التكبير والتصغير إلى القيمة False
 
+# تحديد المسار الصحيح للملفات عند تشغيل التطبيق بشكل مستقل
+def resource_path(relative_path):
+    """تحديد المسار للملفات المضمنة عند استخدام PyInstaller
+    pyinstaller --onefile --noconsole --add-data "logo.ico;." --add-data "AI.jpg;." --icon=logo.ico Data_Augmentation.py
+    """
+    try:
+        # إذا كان التطبيق يعمل من داخل PyInstaller
+        base_path = sys._MEIPASS
+    except Exception:
+        # إذا كان يعمل في بيئة التطوير
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
 # تعيين الأيقونة للتطبيق إذا كانت موجودة
-icon_path = "logo.ico"
+icon_path = resource_path("logo.ico")
 if os.path.exists(icon_path):
     root.iconbitmap(icon_path)
 
 # إضافة صورة خلفية إذا كانت موجودة
-background_path = "AI.jpg"
+background_path = resource_path("AI.jpg")
 if os.path.exists(background_path):
     background_image = Image.open(background_path)  # فتح صورة الخلفية
     background_image = background_image.resize((1100, 650), Image.BICUBIC)  # تغيير حجم الصورة
