@@ -57,6 +57,10 @@ def start_processing(source_file, output_dir, num_files, ext):
             messagebox.showerror("خطأ", "صيغة الملف غير مدعومة.")
             return
         messagebox.showinfo("نجاح", "تمت العملية بنجاح!")
+        # تفريغ الحقول بعد إتمام التحويل
+        num_files_var.set("")
+        source_file_var.set("")
+        destination_folder_var.set("")
     except Exception as e:
         messagebox.showerror("خطأ", f"حدث خطأ أثناء المعالجة: {str(e)}")
     finally:
@@ -138,7 +142,9 @@ def process_videos(source_file, output_dir, num_files, compression='mp4v'):
                 '-r', str(fps),  # معدل الإطارات
                 '-i', '-',  # إدخال من stdin
                 '-vcodec', 'libx264',  # استخدام H.264
-                '-crf', '23',  # تحديد جودة الفيديو (كلما زادت القيمة، انخفضت الجودة وحجم الملف)
+                '-acodec', 'aac',
+                '-b:a', '64k',
+                '-crf', '26',  # تحديد جودة الفيديو (كلما زادت القيمة، انخفضت الجودة وحجم الملف)
                 '-preset', 'medium',  # تحسين الضغط (بسرعة متوسطة للحصول على توازن بين الجودة والسرعة)
                 '-pix_fmt', 'yuv420p',  # صيغة الألوان المدعومة
                 '-tune', 'film',  # تخصيص الضغط للأفلام (لتقليل التشويش)
