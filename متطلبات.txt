@@ -1,0 +1,11 @@
+ffmpeg تحتاج لتنزيل مكتبة
+التي في الرابط التالي
+https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl-shared.zip
+
+zip بعد تنزيلها تقوم بفك ضغط الملف
+bin ثم تدخل الى داخل المجلد الذي تم فك ضغط يوجد في داخله مجلد C الى اي مسار على سبيل المثال الى قرص
+تقوم بنسخ المسار الذي قد يكون بهذا الشكل
+C:\ffmpeg-master-latest-win64-gpl-shared\bin
+
+ path بعد نسخه تقوم بإضافة هذا المسار الى متغيرات البيئة
+وبهذا يكون بإمكانك استخدام التطبيق

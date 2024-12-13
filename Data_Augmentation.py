@@ -14,7 +14,7 @@ import threading
 def choose_source_file():
     file = filedialog.askopenfilename(
         title="اختر ملف الفيديو أو الصورة",
-        filetypes=(("All Files", "*.*"), ("Images", "*.png;*.jpg;*.jpeg"), ("Videos", "*.mp4;*.avi;*.mov"))
+        filetypes=(("All Files", "*.*"), ("Images", "*.png;*.jpg;*.jpeg;*.webp;*.gif"), ("Videos", "*.mp4;*.avi;*.mov"))
     )
     source_file_var.set(file)
 
@@ -49,7 +49,7 @@ def process_files():
 # دالة تنفيذ عملية المعالجة
 def start_processing(source_file, output_dir, num_files, ext):
     try:
-        if ext.lower() in [".png", ".jpg", ".jpeg"]:
+        if ext.lower() in [".png", ".jpg", ".jpeg", ".webp", ".gif"]:
             process_images(source_file, output_dir, num_files)
         elif ext.lower() in [".mp4", ".avi", ".mov"]:
             process_videos(source_file, output_dir, num_files)
